@@ -24,5 +24,5 @@ async function connectToDatabase() {
     }
 }
 app.use('/api/users', require('./routes/userRoutes'));
-app.use('/api/courses', require('./routes/courseRoutes'));
+app.use('/api/mbti', require('./routes/mbtiRoutes'));
 connectToDatabase();
