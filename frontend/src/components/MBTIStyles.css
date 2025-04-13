@@ -1,0 +1,634 @@
+/* MBTI Component Styles */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+/* Main container styles */
+.mbti-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 3rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background patterns */
+.mbti-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  z-index: 0;
+}
+
+/* Header styles */
+.mbti-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.mbti-title {
+  font-family: 'Abril Fatface', cursive;
+  font-size: 4rem;
+  font-weight: 400;
+  background: linear-gradient(45deg, #6b46c1, #3b82f6, #ec4899);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient 10s ease infinite;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: inline-block;
+}
+
+.mbti-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #6b46c1, #3b82f6, #ec4899);
+  animation: lineExpand 2s ease-out forwards;
+  border-radius: 2px;
+}
+
+.mbti-subtitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.25rem;
+  color: #4b5563;
+  max-width: 800px;
+  margin: 2rem auto 0;
+  line-height: 1.6;
+  animation: fadeIn 1s ease-in-out 0.5s forwards;
+  opacity: 0;
+}
+
+/* Grid layout */
+.mbti-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Card styles */
+.mbti-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  height: 420px; /* Fixed height for all cards */
+  display: flex;
+  flex-direction: column;
+  transform: translateY(50px);
+  opacity: 0;
+  animation: fadeInUp 0.8s forwards;
+  animation-delay: calc(var(--index) * 0.1s);
+}
+
+.mbti-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.mbti-card-header {
+  padding: 0;
+  position: relative;
+  height: 160px; /* Fixed height for all headers */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+}
+
+.mbti-card-svg-container {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease;
+  animation: float 3s ease-in-out infinite;
+  position: absolute;
+  top: 30px; /* Fixed position from top */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.mbti-card:hover .mbti-card-svg-container {
+  transform: translateX(-50%) scale(1.1);
+}
+
+.mbti-card-type {
+  font-family: var(--type-font);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  bottom: 2.5rem;
+  left: 1rem;
+  letter-spacing: 0.05em;
+  z-index: 1;
+}
+
+.mbti-card-nickname {
+  font-family: var(--nickname-font);
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: capitalize;
+  letter-spacing: 0.05em;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.mbti-card-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  overflow-y: auto; /* Allow scrolling for content that doesn't fit */
+}
+
+.mbti-card-description {
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+ 
+  -webkit-box-orient: vertical;
+}
+
+.mbti-card-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.mbti-card-trait {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: var(--trait-bg);
+  color: var(--trait-color);
+  transition: all 0.3s ease;
+}
+
+.mbti-card:hover .mbti-card-trait {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mbti-card-footer {
+  padding: 1rem 1.5rem;
+  background-color: var(--footer-bg);
+  border-top: 1px solid var(--footer-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mbti-card-compatibility {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--footer-text);
+}
+
+.mbti-card-compatibility-types {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mbti-card-compatibility-type {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--compat-bg);
+  color: var(--compat-text);
+  transition: all 0.3s ease;
+}
+
+.mbti-card:hover .mbti-card-compatibility-type {
+  background-color: var(--compat-bg-hover);
+}
+
+/* Filter section */
+.mbti-filters {
+  max-width: 1400px;
+  margin: 0 auto 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 1s ease-in-out 0.8s forwards;
+  opacity: 0;
+}
+
+.mbti-filter-button {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #4b5563;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.mbti-filter-button:hover {
+  background-color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mbti-filter-button.active {
+  background-color: #6b46c1;
+  color: white;
+  border-color: #6b46c1;
+}
+
+/* Animations */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateX(-50%) translateY(0px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0px);
+  }
+}
+
+@keyframes lineExpand {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* MBTI Type-specific styles */
+.mbti-card.istj {
+  --gradient-start: #4b6cb7;
+  --gradient-end: #182848;
+  --type-font: 'Oswald', sans-serif;
+  --nickname-font: 'Montserrat', sans-serif;
+  --trait-bg: rgba(75, 108, 183, 0.1);
+  --trait-color: #4b6cb7;
+  --footer-bg: rgba(24, 40, 72, 0.05);
+  --footer-border: rgba(24, 40, 72, 0.1);
+  --footer-text: #182848;
+  --compat-bg: rgba(24, 40, 72, 0.1);
+  --compat-text: #182848;
+  --compat-bg-hover: rgba(24, 40, 72, 0.2);
+}
+
+.mbti-card.isfj {
+  --gradient-start: #06beb6;
+  --gradient-end: #48b1bf;
+  --type-font: 'Quicksand', sans-serif;
+  --nickname-font: 'Dancing Script', cursive;
+  --trait-bg: rgba(6, 190, 182, 0.1);
+  --trait-color: #06beb6;
+  --footer-bg: rgba(72, 177, 191, 0.05);
+  --footer-border: rgba(72, 177, 191, 0.1);
+  --footer-text: #48b1bf;
+  --compat-bg: rgba(72, 177, 191, 0.1);
+  --compat-text: #48b1bf;
+  --compat-bg-hover: rgba(72, 177, 191, 0.2);
+}
+
+.mbti-card.infj {
+  --gradient-start: #8e2de2;
+  --gradient-end: #4a00e0;
+  --type-font: 'Playfair Display', serif;
+  --nickname-font: 'Raleway', sans-serif;
+  --trait-bg: rgba(142, 45, 226, 0.1);
+  --trait-color: #8e2de2;
+  --footer-bg: rgba(74, 0, 224, 0.05);
+  --footer-border: rgba(74, 0, 224, 0.1);
+  --footer-text: #4a00e0;
+  --compat-bg: rgba(74, 0, 224, 0.1);
+  --compat-text: #4a00e0;
+  --compat-bg-hover: rgba(74, 0, 224, 0.2);
+}
+
+.mbti-card.intj {
+  --gradient-start: #141e30;
+  --gradient-end: #243b55;
+  --type-font: 'Bebas Neue', sans-serif;
+  --nickname-font: 'Poppins', sans-serif;
+  --trait-bg: rgba(20, 30, 48, 0.1);
+  --trait-color: #141e30;
+  --footer-bg: rgba(36, 59, 85, 0.05);
+  --footer-border: rgba(36, 59, 85, 0.1);
+  --footer-text: #243b55;
+  --compat-bg: rgba(36, 59, 85, 0.1);
+  --compat-text: #243b55;
+  --compat-bg-hover: rgba(36, 59, 85, 0.2);
+}
+
+.mbti-card.istp {
+  --gradient-start: #3a7bd5;
+  --gradient-end: #00d2ff;
+  --type-font: 'Montserrat', sans-serif;
+  --nickname-font: 'Quicksand', sans-serif;
+  --trait-bg: rgba(58, 123, 213, 0.1);
+  --trait-color: #3a7bd5;
+  --footer-bg: rgba(0, 210, 255, 0.05);
+  --footer-border: rgba(0, 210, 255, 0.1);
+  --footer-text: #00d2ff;
+  --compat-bg: rgba(0, 210, 255, 0.1);
+  --compat-text: #00d2ff;
+  --compat-bg-hover: rgba(0, 210, 255, 0.2);
+}
+
+.mbti-card.isfp {
+  --gradient-start: #ff9966;
+  --gradient-end: #ff5e62;
+  --type-font: 'Pacifico', cursive;
+  --nickname-font: 'Montserrat', sans-serif;
+  --trait-bg: rgba(255, 153, 102, 0.1);
+  --trait-color: #ff9966;
+  --footer-bg: rgba(255, 94, 98, 0.05);
+  --footer-border: rgba(255, 94, 98, 0.1);
+  --footer-text: #ff5e62;
+  --compat-bg: rgba(255, 94, 98, 0.1);
+  --compat-text: #ff5e62;
+  --compat-bg-hover: rgba(255, 94, 98, 0.2);
+}
+
+.mbti-card.infp {
+  --gradient-start: #c33764;
+  --gradient-end: #1d2671;
+  --type-font: 'Dancing Script', cursive;
+  --nickname-font: 'Raleway', sans-serif;
+  --trait-bg: rgba(195, 55, 100, 0.1);
+  --trait-color: #c33764;
+  --footer-bg: rgba(29, 38, 113, 0.05);
+  --footer-border: rgba(29, 38, 113, 0.1);
+  --footer-text: #1d2671;
+  --compat-bg: rgba(29, 38, 113, 0.1);
+  --compat-text: #1d2671;
+  --compat-bg-hover: rgba(29, 38, 113, 0.2);
+}
+
+.mbti-card.intp {
+  --gradient-start: #2c3e50;
+  --gradient-end: #4ca1af;
+  --type-font: 'Lora', serif;
+  --nickname-font: 'Poppins', sans-serif;
+  --trait-bg: rgba(44, 62, 80, 0.1);
+  --trait-color: #2c3e50;
+  --footer-bg: rgba(76, 161, 175, 0.05);
+  --footer-border: rgba(76, 161, 175, 0.1);
+  --footer-text: #4ca1af;
+  --compat-bg: rgba(76, 161, 175, 0.1);
+  --compat-text: #4ca1af;
+  --compat-bg-hover: rgba(76, 161, 175, 0.2);
+}
+
+.mbti-card.estp {
+  --gradient-start: #f12711;
+  --gradient-end: #f5af19;
+  --type-font: 'Bebas Neue', sans-serif;
+  --nickname-font: 'Montserrat', sans-serif;
+  --trait-bg: rgba(241, 39, 17, 0.1);
+  --trait-color: #f12711;
+  --footer-bg: rgba(245, 175, 25, 0.05);
+  --footer-border: rgba(245, 175, 25, 0.1);
+  --footer-text: #f5af19;
+  --compat-bg: rgba(245, 175, 25, 0.1);
+  --compat-text: #f5af19;
+  --compat-bg-hover: rgba(245, 175, 25, 0.2);
+}
+
+.mbti-card.esfp {
+  --gradient-start: #ff512f;
+  --gradient-end: #dd2476;
+  --type-font: 'Pacifico', cursive;
+  --nickname-font: 'Quicksand', sans-serif;
+  --trait-bg: rgba(255, 81, 47, 0.1);
+  --trait-color: #ff512f;
+  --footer-bg: rgba(221, 36, 118, 0.05);
+  --footer-border: rgba(221, 36, 118, 0.1);
+  --footer-text: #dd2476;
+  --compat-bg: rgba(221, 36, 118, 0.1);
+  --compat-text: #dd2476;
+  --compat-bg-hover: rgba(221, 36, 118, 0.2);
+}
+
+.mbti-card.enfp {
+  --gradient-start: #ee0979;
+  --gradient-end: #ff6a00;
+  --type-font: 'Dancing Script', cursive;
+  --nickname-font: 'Poppins', sans-serif;
+  --trait-bg: rgba(238, 9, 121, 0.1);
+  --trait-color: #ee0979;
+  --footer-bg: rgba(255, 106, 0, 0.05);
+  --footer-border: rgba(255, 106, 0, 0.1);
+  --footer-text: #ff6a00;
+  --compat-bg: rgba(255, 106, 0, 0.1);
+  --compat-text: #ff6a00;
+  --compat-bg-hover: rgba(255, 106, 0, 0.2);
+}
+
+.mbti-card.entp {
+  --gradient-start: #1a2980;
+  --gradient-end: #26d0ce;
+  --type-font: 'Oswald', sans-serif;
+  --nickname-font: 'Raleway', sans-serif;
+  --trait-bg: rgba(26, 41, 128, 0.1);
+  --trait-color: #1a2980;
+  --footer-bg: rgba(38, 208, 206, 0.05);
+  --footer-border: rgba(38, 208, 206, 0.1);
+  --footer-text: #26d0ce;
+  --compat-bg: rgba(38, 208, 206, 0.1);
+  --compat-text: #26d0ce;
+  --compat-bg-hover: rgba(38, 208, 206, 0.2);
+}
+
+.mbti-card.estj {
+  --gradient-start: #0f2027;
+  --gradient-end: #2c5364;
+  --type-font: 'Montserrat', sans-serif;
+  --nickname-font: 'Lora', serif;
+  --trait-bg: rgba(15, 32, 39, 0.1);
+  --trait-color: #0f2027;
+  --footer-bg: rgba(44, 83, 100, 0.05);
+  --footer-border: rgba(44, 83, 100, 0.1);
+  --footer-text: #2c5364;
+  --compat-bg: rgba(44, 83, 100, 0.1);
+  --compat-text: #2c5364;
+  --compat-bg-hover: rgba(44, 83, 100, 0.2);
+}
+
+.mbti-card.esfj {
+  --gradient-start: #11998e;
+  --gradient-end: #38ef7d;
+  --type-font: 'Quicksand', sans-serif;
+  --nickname-font: 'Dancing Script', cursive;
+  --trait-bg: rgba(17, 153, 142, 0.1);
+  --trait-color: #11998e;
+  --footer-bg: rgba(56, 239, 125, 0.05);
+  --footer-border: rgba(56, 239, 125, 0.1);
+  --footer-text: #38ef7d;
+  --compat-bg: rgba(56, 239, 125, 0.1);
+  --compat-text: #38ef7d;
+  --compat-bg-hover: rgba(56, 239, 125, 0.2);
+}
+
+.mbti-card.enfj {
+  --gradient-start: #bc4e9c;
+  --gradient-end: #f80759;
+  --type-font: 'Playfair Display', serif;
+  --nickname-font: 'Montserrat', sans-serif;
+  --trait-bg: rgba(188, 78, 156, 0.1);
+  --trait-color: #bc4e9c;
+  --footer-bg: rgba(248, 7, 89, 0.05);
+  --footer-border: rgba(248, 7, 89, 0.1);
+  --footer-text: #f80759;
+  --compat-bg: rgba(248, 7, 89, 0.1);
+  --compat-text: #f80759;
+  --compat-bg-hover: rgba(248, 7, 89, 0.2);
+}
+
+.mbti-card.entj {
+  --gradient-start: #4568dc;
+  --gradient-end: #b06ab3;
+  --type-font: 'Bebas Neue', sans-serif;
+  --nickname-font: 'Raleway', sans-serif;
+  --trait-bg: rgba(69, 104, 220, 0.1);
+  --trait-color: #4568dc;
+  --footer-bg: rgba(176, 106, 179, 0.05);
+  --footer-border: rgba(176, 106, 179, 0.1);
+  --footer-text: #b06ab3;
+  --compat-bg: rgba(176, 106, 179, 0.1);
+  --compat-text: #b06ab3;
+  --compat-bg-hover: rgba(176, 106, 179, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mbti-title {
+    font-size: 3rem;
+  }
+
+  .mbti-subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .mbti-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .mbti-card {
+    height: 350px;
+  }
+
+  .mbti-card-header {
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mbti-title {
+    font-size: 2.5rem;
+  }
+
+  .mbti-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+
+  .mbti-filters {
+    flex-direction: column;
+    align-items: center;
+  }
+}

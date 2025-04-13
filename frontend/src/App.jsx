@@ -1,49 +1,52 @@
-import { useState } from "react"
 import {
   createBrowserRouter,
-  RouterProvider,
-} from "react-router";
+  RouterProvider
+} from "react-router-dom";
+import Layout from "./components/Layout";
 import PersonalityTest from "./components/PersonalityTest";
 import Result from "./components/Result";
 import Error from "./components/Error";
 import Matches from "./components/Matches";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import Mbti from "./components/Mbti";
+import Mbti from "./components/MBTI";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <PersonalityTest />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <PersonalityTest />,
+      },
+      {
+        path: "/result",
+        element: <Result />,
+      },
+      {
+        path: "/matches",
+        element: <Matches />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Signup />,
+      },
+      {
+        path: "/mbti",
+        element: <Mbti />,
+      },
+      {
+        path: "*",
+        element: <Error />,
+      },
+    ],
   },
-  {
-    path: "/result",
-    element: <Result />,
-  },
-  {
-    path: "/matches",
-    element: <Matches />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Signup />,
-  },
-  {
-    path: "/mbti",
-    element: <Mbti />,
-  },
-  {
-    path: "*",
-    element: <Error />,
-  },
-  
 ]);
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <RouterProvider router={router} />
   )
